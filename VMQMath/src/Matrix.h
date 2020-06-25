@@ -10,7 +10,7 @@ namespace VMQ {
 	public:
 		Matrix();
 		Matrix(size_t, size_t);
-		Matrix(const Matrix& other);
+		Matrix(const Matrix&);
 
 		Matrix& operator= (const Matrix& other);
 
@@ -19,6 +19,7 @@ namespace VMQ {
 		bool IsEmpty() const;
 		Matrix Transpose() const;
 		Matrix Identity() const;
+		void SetIdentity();
 		void MultiplyScalar(float scalar);
 		void SetElement(size_t, size_t, float);
 		float GetElement(size_t, size_t) const;

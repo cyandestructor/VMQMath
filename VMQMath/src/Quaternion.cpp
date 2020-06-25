@@ -91,43 +91,6 @@ namespace VMQ {
 
 	//Static Members
 
-	/*Matrix Quaternion::GetRotationMatrix() {
-
-		float
-			sqW = m_scalar * m_scalar,
-			sqX = m_vector.SqX(),
-			sqY = m_vector.SqY(),
-			sqZ = m_vector.SqZ(),
-
-			xw = m_vector.X() * m_scalar,
-			yw = m_vector.Y() * m_scalar,
-			zw = m_vector.Z() * m_scalar,
-
-			xy = m_vector.X() * m_vector.Y(),
-			xz = m_vector.X() * m_vector.Z(),
-
-			yz = m_vector.Y() * m_vector.Z();
-
-		Matrix rotationMatrix(4, 4);
-
-		rotationMatrix.SetElement(0, 0, (float)(1 - 2 * (sqY + sqZ)));
-		rotationMatrix.SetElement(0, 1, (float)(2 * (xy - zw)));
-		rotationMatrix.SetElement(0, 2, (float)(2 * (xz + yw)));
-
-		rotationMatrix.SetElement(1, 0, (float)(2 * (xy + zw)));
-		rotationMatrix.SetElement(1, 1, (float)(1 - 2 * (sqX + sqZ)));
-		rotationMatrix.SetElement(1, 2, (float)(2 * (yz - xw)));
-
-		rotationMatrix.SetElement(2, 0, (float)(2 * (xz - yw)));
-		rotationMatrix.SetElement(2, 1, (float)(2 * (yz + xw)));
-		rotationMatrix.SetElement(2, 2, (float)(1 - 2 * (sqX + sqY)));
-
-		rotationMatrix.SetElement(3, 3, 1);
-
-		return rotationMatrix;
-
-	}*/
-
 	Quaternion Quaternion::Multiply(const Quaternion& quaternion1, const Quaternion& quaternion2) {
 
 		float

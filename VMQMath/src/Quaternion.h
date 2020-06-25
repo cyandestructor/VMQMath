@@ -17,7 +17,6 @@ namespace VMQ {
 		float Z() const;
 		float GetScalar() const;
 		const Vector3D& GetVector() const;
-		//Matrix GetRotationMatrix();
 		void SetScalar(float);
 		void SetVector(const Vector3D&);
 		void SetW(float);

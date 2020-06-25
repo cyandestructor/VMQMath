@@ -145,6 +145,19 @@ namespace VMQ {
 
 	}
 
+	void Matrix::SetIdentity() {
+
+		for (size_t i = 0; i < m_rows; i++) {
+			for (size_t j = 0; j < m_columns; j++) {
+				if (i == j)
+					this->SetElement(i, j, 1);
+				else
+					this->SetElement(i, j, 0);
+			}
+		}
+
+	}
+
 	void Matrix::MultiplyScalar(float scalar) {
 
 		for (size_t i = 0; i < m_rows; i++) {

@@ -139,14 +139,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Axes.h" />
     <ClInclude Include="src\Matrix.h" />
+    <ClInclude Include="src\MMatrix3D.h" />
     <ClInclude Include="src\Quaternion.h" />
+    <ClInclude Include="src\RMatrix3D.h" />
+    <ClInclude Include="src\SMatrix3D.h" />
+    <ClInclude Include="src\TMatrix3D.h" />
     <ClInclude Include="src\Vector3D.h" />
     <ClInclude Include="src\VMQMath.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Matrix.cpp" />
+    <ClCompile Include="src\MMatrix3D.cpp" />
     <ClCompile Include="src\Quaternion.cpp" />
+    <ClCompile Include="src\RMatrix3D.cpp" />
+    <ClCompile Include="src\SMatrix3D.cpp" />
+    <ClCompile Include="src\TMatrix3D.cpp" />
     <ClCompile Include="src\Vector3D.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
