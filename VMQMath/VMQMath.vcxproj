@@ -142,6 +142,7 @@
     <ClInclude Include="src\Axes.h" />
     <ClInclude Include="src\Matrix.h" />
     <ClInclude Include="src\MMatrix3D.h" />
+    <ClInclude Include="src\Point3D.h" />
     <ClInclude Include="src\Quaternion.h" />
     <ClInclude Include="src\RMatrix3D.h" />
     <ClInclude Include="src\SMatrix3D.h" />
@@ -152,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="src\Matrix.cpp" />
     <ClCompile Include="src\MMatrix3D.cpp" />
+    <ClCompile Include="src\Point3D.cpp" />
     <ClCompile Include="src\Quaternion.cpp" />
     <ClCompile Include="src\RMatrix3D.cpp" />
     <ClCompile Include="src\SMatrix3D.cpp" />

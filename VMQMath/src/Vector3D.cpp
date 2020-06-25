@@ -5,45 +5,45 @@ namespace VMQ {
 
 	//Methods
 
-	float Vector3D::X() const {
+	double Vector3D::X() const {
 
 		return m_x;
 
 	}
 
-	float Vector3D::Y() const {
+	double Vector3D::Y() const {
 
 		return m_y;
 
 	}
 
-	float Vector3D::Z() const {
+	double Vector3D::Z() const {
 
 		return m_z;
 
 	}
 
-	float Vector3D::SqX() const {
+	double Vector3D::SqX() const {
 
 		return m_x * m_x;
 
 	}
 
-	float Vector3D::SqY() const {
+	double Vector3D::SqY() const {
 
 		return m_y * m_y;
 
 	}
 
-	float Vector3D::SqZ() const {
+	double Vector3D::SqZ() const {
 
 		return m_z * m_z;
 
 	}
 
-	float Vector3D::Magnitude() const {
+	double Vector3D::Magnitude() const {
 
-		float sqX = m_x * m_x,
+		double sqX = m_x * m_x,
 			sqY = m_y * m_y,
 			sqZ = m_z * m_z;
 
@@ -51,7 +51,7 @@ namespace VMQ {
 
 	}
 
-	void Vector3D::SetValues(float x, float y, float z) {
+	void Vector3D::SetValues(double x, double y, double z) {
 
 		m_x = x;
 		m_y = y;
@@ -59,19 +59,19 @@ namespace VMQ {
 
 	}
 
-	void Vector3D::SetX(float x) {
+	void Vector3D::SetX(double x) {
 
 		m_x = x;
 
 	}
 
-	void Vector3D::SetY(float y) {
+	void Vector3D::SetY(double y) {
 
 		m_y = y;
 
 	}
 
-	void Vector3D::SetZ(float z) {
+	void Vector3D::SetZ(double z) {
 
 		m_z = z;
 
@@ -79,7 +79,7 @@ namespace VMQ {
 
 	void Vector3D::Normalize() {
 
-		float normFactor = (1 / this->Magnitude());
+		double normFactor = (1 / this->Magnitude());
 		m_x *= normFactor;
 		m_y *= normFactor;
 		m_z *= normFactor;
@@ -88,7 +88,7 @@ namespace VMQ {
 
 	Vector3D Vector3D::Normalized() const {
 
-		float normFactor = (1 / this->Magnitude()),
+		double normFactor = (1 / this->Magnitude()),
 			normX = m_x * normFactor,
 			normY = m_y * normFactor,
 			normZ = m_z * normFactor;
@@ -103,7 +103,7 @@ namespace VMQ {
 
 	}
 
-	void Vector3D::MultiplyScalar(float scalar) {
+	void Vector3D::MultiplyScalar(double scalar) {
 
 		m_x *= scalar;
 		m_y *= scalar;
@@ -124,7 +124,7 @@ namespace VMQ {
 
 	}
 
-	float Vector3D::DotProductWith(const Vector3D& vector) const {
+	double Vector3D::DotProductWith(const Vector3D& vector) const {
 
 		return Vector3D::DotProduct(*this, vector);
 
@@ -138,7 +138,7 @@ namespace VMQ {
 
 	}
 	
-	void Vector3D::Add(float x, float y, float z) {
+	void Vector3D::Add(double x, double y, double z) {
 
 		m_x += x;
 		m_y += y;
@@ -146,11 +146,27 @@ namespace VMQ {
 
 	}
 
+	void Vector3D::Subtract(const Vector3D& vector) {
+		
+		m_x -= vector.m_x;
+		m_y -= vector.m_y;
+		m_z -= vector.m_z;
+	
+	}
+
+	void Vector3D::Subtract(double x, double y, double z) {
+		
+		m_x -= x;
+		m_x -= y;
+		m_x -= z;
+
+	}
+
 	//Static members
 
 	Vector3D Vector3D::CrossProduct(const Vector3D& vector1, const Vector3D& vector2) {
 
-		float
+		double
 			x = vector1.m_y * vector2.m_z - vector1.m_z * vector2.m_y,
 			y = (vector1.m_x * vector2.m_z - vector1.m_z * vector2.m_x) * -1,
 			z = vector1.m_x * vector2.m_y - vector1.m_y * vector2.m_x;
@@ -159,7 +175,7 @@ namespace VMQ {
 
 	}
 
-	float Vector3D::DotProduct(const Vector3D& vector1, const Vector3D& vector2) {
+	double Vector3D::DotProduct(const Vector3D& vector1, const Vector3D& vector2) {
 
 		return vector1.m_x * vector2.m_x +
 			vector1.m_y * vector2.m_y +
@@ -175,7 +191,13 @@ namespace VMQ {
 
 	}
 
-	Vector3D Vector3D::ScalarByVector(float scalar, const Vector3D& vector) {
+	Vector3D Vector3D::SubtractVectors(const Vector3D& vector1, const Vector3D& vector2) {
+		return Vector3D(vector1.m_x-vector2.m_x,
+			vector1.m_y - vector2.m_y,
+			vector1.m_z - vector2.m_z);
+	}
+
+	Vector3D Vector3D::ScalarByVector(double scalar, const Vector3D& vector) {
 		
 		return Vector3D(vector.m_x * scalar, vector.m_y * scalar, vector.m_z * scalar);
 
@@ -189,13 +211,19 @@ namespace VMQ {
 
 	}
 
-	Vector3D operator*(float scalar, const Vector3D& vector) {
+	Vector3D operator-(const Vector3D& vector1, const Vector3D& vector2) {
+		
+		return Vector3D::SubtractVectors(vector1, vector2);
+
+	}
+
+	Vector3D operator*(double scalar, const Vector3D& vector) {
 
 		return Vector3D::ScalarByVector(scalar, vector);
 
 	}
 	
-	Vector3D operator*(const Vector3D& vector, float scalar) {
+	Vector3D operator*(const Vector3D& vector, double scalar) {
 
 		return Vector3D::ScalarByVector(scalar, vector);
 

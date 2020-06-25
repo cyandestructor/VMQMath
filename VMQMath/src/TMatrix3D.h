@@ -3,10 +3,9 @@
 
 #include "Matrix.h"
 #include "Vector3D.h"
+#include "Point3D.h"
 
 namespace VMQ {
-
-	class Point3D;
 
 	class TMatrix3D {
 
@@ -27,7 +26,7 @@ namespace VMQ {
 
 	private:
 		TMatrix3D(Matrix matrix) : m_matrix(matrix) {}
-		static void Create4X1VectorMatrix(const Vector3D&, Matrix&);
+		static void Create4X1Matrix(double x, double y, double z, Matrix& matrix, bool isPoint);
 
 	};
 

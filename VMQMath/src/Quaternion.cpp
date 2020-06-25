@@ -6,9 +6,9 @@ namespace VMQ {
 
 	//Constructors
 
-	Quaternion::Quaternion(float angle, const Vector3D& axis) {
+	Quaternion::Quaternion(double angle, const Vector3D& axis) {
 
-		float A = angle * 0.5, sinA = (float)sin(A * M_PI / 180), cosA = (float)cos(A * M_PI / 180);
+		double A = angle * 0.5, sinA = sin(A * M_PI / 180), cosA = cos(A * M_PI / 180);
 
 		m_scalar = cosA;
 		m_vector = sinA * axis.Normalized();
@@ -17,31 +17,31 @@ namespace VMQ {
 
 	//Methods Definitions
 
-	float Quaternion::W() const {
+	double Quaternion::W() const {
 
 		return m_scalar;
 
 	}
 
-	float Quaternion::X() const {
+	double Quaternion::X() const {
 
 		return m_vector.X();
 
 	}
 
-	float Quaternion::Y() const {
+	double Quaternion::Y() const {
 
 		return m_vector.Y();
 
 	}
 
-	float Quaternion::Z() const {
+	double Quaternion::Z() const {
 
 		return m_vector.Z();
 
 	}
 
-	float Quaternion::GetScalar() const {
+	double Quaternion::GetScalar() const {
 
 		return m_scalar;
 
@@ -53,7 +53,7 @@ namespace VMQ {
 
 	}
 
-	void Quaternion::SetScalar(float scalar) {
+	void Quaternion::SetScalar(double scalar) {
 
 		m_scalar = scalar;
 
@@ -65,25 +65,25 @@ namespace VMQ {
 
 	}
 
-	void Quaternion::SetW(float w) {
+	void Quaternion::SetW(double w) {
 
 		m_scalar = w;
 
 	}
 
-	void Quaternion::SetX(float x) {
+	void Quaternion::SetX(double x) {
 
 		m_vector.SetX(x);
 
 	}
 
-	void Quaternion::SetY(float y) {
+	void Quaternion::SetY(double y) {
 
 		m_vector.SetY(y);
 
 	}
 
-	void Quaternion::SetZ(float z) {
+	void Quaternion::SetZ(double z) {
 
 		m_vector.SetZ(z);
 
@@ -93,7 +93,7 @@ namespace VMQ {
 
 	Quaternion Quaternion::Multiply(const Quaternion& quaternion1, const Quaternion& quaternion2) {
 
-		float
+		double
 			x1 = quaternion1.X(),
 			y1 = quaternion1.Y(),
 			z1 = quaternion1.Z(),

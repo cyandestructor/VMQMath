@@ -1,4 +1,5 @@
 #include <iostream>
+#include <exception>
 #include "Matrix.h"
 
 namespace VMQ {
@@ -23,8 +24,8 @@ namespace VMQ {
 			m_matrix = nullptr;
 		}
 		else {
-			m_matrix = new float[rows * columns]; //Matrix represented as a linear array
-			std::memset(m_matrix, 0, sizeof(float) * rows * columns);
+			m_matrix = new double[rows * columns]; //Matrix represented as a linear array
+			memset(m_matrix, 0, sizeof(double) * rows * columns);
 		}
 
 	}
@@ -35,12 +36,11 @@ namespace VMQ {
 		m_columns = other.m_columns;
 
 		if (m_rows != 0 && m_columns != 0) {
-			m_matrix = new float[m_rows * m_columns];
+			m_matrix = new double[m_rows * m_columns];
 
-			for (int i = 0; i < m_rows * m_columns; i++) {
-				m_matrix[i] = other.m_matrix[i];
-			}
-
+			memcpy_s(m_matrix, sizeof(double) * m_rows * m_columns,
+				other.m_matrix, sizeof(double) * other.m_rows * other.m_columns);
+			
 		}
 		else {
 			m_matrix = nullptr;
@@ -60,11 +60,10 @@ namespace VMQ {
 				m_rows = other.m_rows;
 				m_columns = other.m_columns;
 
-				m_matrix = new float[m_rows * m_columns];
+				m_matrix = new double[m_rows * m_columns];
 
-				for (int i = 0; i < m_rows * m_columns; i++) {
-					m_matrix[i] = other.m_matrix[i];
-				}
+				memcpy_s(m_matrix, sizeof(double) * m_rows * m_columns,
+					other.m_matrix, sizeof(double) * other.m_rows * other.m_columns);
 			}
 			else {
 				this->Reset();
@@ -111,13 +110,13 @@ namespace VMQ {
 
 	}
 
-	void Matrix::SetElement(size_t row, size_t column, float value) {
+	void Matrix::SetElement(size_t row, size_t column, double value) {
 
 		m_matrix[row * m_columns + column] = value;
 
 	}
 
-	float Matrix::GetElement(size_t row, size_t column) const {
+	double Matrix::GetElement(size_t row, size_t column) const {
 
 		return m_matrix[row * m_columns + column];
 
@@ -158,13 +157,13 @@ namespace VMQ {
 
 	}
 
-	void Matrix::MultiplyScalar(float scalar) {
+	void Matrix::MultiplyScalar(double scalar) {
 
 		for (size_t i = 0; i < m_rows; i++) {
 
 			for (size_t j = 0; j < m_columns; j++) {
 
-				float scalarProduct = scalar * this->GetElement(i, j);
+				double scalarProduct = scalar * this->GetElement(i, j);
 				this->SetElement(i, j, scalarProduct);
 
 			}
@@ -191,7 +190,7 @@ namespace VMQ {
 			if (matrix1.Rows() == matrix2.Rows() && matrix1.Columns() == matrix2.Columns()) {	//If both matrices are the same order
 
 				//resultanMatrix will have the same order/dimensions as matrices 1 and 2
-				int resMatrixRows = matrix1.Rows(),
+				size_t resMatrixRows = matrix1.Rows(),
 					resMatrixColumns = matrix2.Columns();
 
 				resultantMatrix = Matrix(resMatrixRows, resMatrixColumns);	//Change the properties of the matrix
@@ -199,17 +198,61 @@ namespace VMQ {
 				for (size_t i = 0; i < resMatrixRows; i++) {
 
 					for (size_t j = 0; j < resMatrixColumns; j++) {
-						float newValue = matrix1.GetElement(i, j) + matrix2.GetElement(i, j);
+						double newValue = matrix1.GetElement(i, j) + matrix2.GetElement(i, j);
 						resultantMatrix.SetElement(i, j, newValue);
 					}
 
 				}
 
 			}
+			else {
+				throw std::invalid_argument("The matrices do not have the same dimensions");
+			}
 
+		}
+		else {
+			throw std::invalid_argument("Matrix should not be empty to execute the operation");
 		}
 
 		return resultantMatrix;
+
+	}
+
+	Matrix Matrix::SubtractMatrices(const Matrix& matrix1, const Matrix& matrix2) {
+
+		Matrix resultantMatrix;
+
+		if (!matrix1.IsEmpty() && !matrix2.IsEmpty()) {
+
+			if (matrix1.Rows() == matrix2.Rows() && matrix1.Columns() == matrix2.Columns()) {	//If both matrices are the same order
+
+				//resultanMatrix will have the same order/dimensions as matrices 1 and 2
+				size_t resMatrixRows = matrix1.Rows(),
+					resMatrixColumns = matrix2.Columns();
+
+				resultantMatrix = Matrix(resMatrixRows, resMatrixColumns);	//Change the properties of the matrix
+
+				for (size_t i = 0; i < resMatrixRows; i++) {
+
+					for (size_t j = 0; j < resMatrixColumns; j++) {
+						double newValue = matrix1.GetElement(i, j) - matrix2.GetElement(i, j);
+						resultantMatrix.SetElement(i, j, newValue);
+					}
+
+				}
+
+			}
+			else {
+				throw std::invalid_argument("The matrices do not have the same dimensions");
+			}
+
+		}
+		else {
+			throw std::invalid_argument("Matrix should not be empty to execute the operation");
+		}
+
+		return resultantMatrix;
+
 
 	}
 
@@ -222,12 +265,12 @@ namespace VMQ {
 			if (matrix1.Columns() == matrix2.Rows()) {	//Condition of matrix multiplication
 
 				//resultantMatrix order/dimensions
-				int resMatrixRows = matrix1.Rows(),
+				size_t resMatrixRows = matrix1.Rows(),
 					resMatrixColumns = matrix2.Columns();
 
 				resultantMatrix = Matrix(resMatrixRows, resMatrixColumns);	//Change the properties of the matrix
 
-				float sum;
+				double sum;
 
 				//Algorithm for Matrix multiplication
 				for (size_t i = 0; i < resMatrixRows; i++) {
@@ -249,7 +292,13 @@ namespace VMQ {
 				}
 
 			}
+			else {
+				throw std::invalid_argument("The matrices do not accomplish the condition of matrix multiplication");
+			}
 
+		}
+		else {
+			throw std::invalid_argument("Matrix should not be empty to execute the operation");
 		}
 
 		return resultantMatrix;
@@ -285,7 +334,7 @@ namespace VMQ {
 
 	}
 
-	Matrix Matrix::ScalarByMatrix(float scalar, const Matrix& matrix) {
+	Matrix Matrix::ScalarByMatrix(double scalar, const Matrix& matrix) {
 
 		Matrix resultant = matrix;
 
@@ -295,7 +344,7 @@ namespace VMQ {
 
 				for (size_t j = 0; j < matrix.Columns(); j++) {
 
-					float scalarProduct = scalar * matrix.GetElement(i, j);
+					double scalarProduct = scalar * matrix.GetElement(i, j);
 					resultant.SetElement(i, j, scalarProduct);
 
 				}
@@ -316,19 +365,25 @@ namespace VMQ {
 
 	}
 
+	Matrix operator-(const Matrix& matrix1, const Matrix& matrix2) {
+		
+		return Matrix::SubtractMatrices(matrix1, matrix2);
+
+	}
+
 	Matrix operator*(const Matrix& matrix1, const Matrix& matrix2) {
 
 		return Matrix::MultiplyMatrices(matrix1, matrix2);
 
 	}
 
-	Matrix operator*(const Matrix& matrix, float scalar) {
+	Matrix operator*(const Matrix& matrix, double scalar) {
 
 		return Matrix::ScalarByMatrix(scalar, matrix);
 
 	}
 
-	Matrix operator*(float scalar, const Matrix& matrix) {
+	Matrix operator*(double scalar, const Matrix& matrix) {
 
 		return Matrix::ScalarByMatrix(scalar, matrix);
 
