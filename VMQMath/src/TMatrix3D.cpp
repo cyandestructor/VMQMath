@@ -7,6 +7,10 @@ namespace VMQ {
 		m_matrix.SetIdentity();
 	}
 
+	TMatrix3D::~TMatrix3D()
+	{
+	}
+
 	const Matrix& TMatrix3D::GetMatrix() const
 	{
 		return m_matrix;

@@ -11,6 +11,7 @@ namespace VMQ {
 
 	public:
 		TMatrix3D();
+		virtual ~TMatrix3D();
 
 		const Matrix& GetMatrix() const;
 		TMatrix3D MultiplyWith(const TMatrix3D&) const;
