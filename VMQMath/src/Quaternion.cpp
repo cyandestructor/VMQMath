@@ -6,7 +6,7 @@ namespace VMQ {
 
 	//Constructors
 
-	Quaternion::Quaternion(double angle, const Vector3D& axis) {
+	Quaternion::Quaternion(double angle, const Vector3& axis) {
 
 		double A = angle * 0.5, sinA = sin(A * M_PI / 180), cosA = cos(A * M_PI / 180);
 
@@ -47,7 +47,7 @@ namespace VMQ {
 
 	}
 
-	const Vector3D& Quaternion::GetVector() const {
+	const Vector3& Quaternion::GetVector() const {
 
 		return m_vector;
 
@@ -59,7 +59,7 @@ namespace VMQ {
 
 	}
 
-	void Quaternion::SetVector(const Vector3D& vector) {
+	void Quaternion::SetVector(const Vector3& vector) {
 
 		m_vector = vector;
 

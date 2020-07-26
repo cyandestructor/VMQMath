@@ -1,10 +1,10 @@
-#include "RMatrix3D.h"
+#include "RMatrix4.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 
 namespace VMQ {
 
-	RMatrix3D::RMatrix3D(double angle, Axes fixedAxis)
+	RMatrix4::RMatrix4(double angle, Axis fixedAxis)
 	{
 		float sinA = (float)sin(angle * M_PI / 180),
 			cosA = (float)cos(angle * M_PI / 180);
@@ -12,19 +12,19 @@ namespace VMQ {
 		m_matrix.SetIdentity();
 
 		switch (fixedAxis) {
-		case Axes::X:
+		case Axis::X:
 			m_matrix.SetElement(1, 1, cosA);
 			m_matrix.SetElement(1, 2, -sinA);
 			m_matrix.SetElement(2, 1, sinA);
 			m_matrix.SetElement(2, 2, cosA);
 			break;
-		case Axes::Y:
+		case Axis::Y:
 			m_matrix.SetElement(0, 0, cosA);
 			m_matrix.SetElement(0, 2, sinA);
 			m_matrix.SetElement(2, 0, -sinA);
 			m_matrix.SetElement(2, 2, cosA);
 			break;
-		case Axes::Z:
+		case Axis::Z:
 			m_matrix.SetElement(0, 0, cosA);
 			m_matrix.SetElement(0, 1, -sinA);
 			m_matrix.SetElement(1, 0, sinA);
@@ -34,9 +34,9 @@ namespace VMQ {
 
 	}
 
-	RMatrix3D::RMatrix3D(const Quaternion& quaternion)
+	RMatrix4::RMatrix4(const Quaternion& quaternion)
 	{
-		const Vector3D& vector = quaternion.GetVector();
+		const Vector3& vector = quaternion.GetVector();
 		double scalar = quaternion.GetScalar();
 
 		double

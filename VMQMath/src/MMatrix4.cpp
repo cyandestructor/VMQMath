@@ -1,13 +1,13 @@
-#include "MMatrix3D.h"
+#include "MMatrix4.h"
 
 namespace VMQ {
 
-	MMatrix3D::MMatrix3D(const Vector3D& vector)
+	MMatrix4::MMatrix4(const Vector3& vector)
 	{
 		SetMoveVector(vector);
 	}
 
-	void MMatrix3D::SetMoveVector(const Vector3D& vector)
+	void MMatrix4::SetMoveVector(const Vector3& vector)
 	{
 		m_mVector = vector;
 		m_matrix.SetElement(0, 3, vector.X());
@@ -15,7 +15,7 @@ namespace VMQ {
 		m_matrix.SetElement(2, 3, vector.Z());
 	}
 
-	const Vector3D& MMatrix3D::GetMoveVector() const
+	const Vector3& MMatrix4::GetMoveVector() const
 	{
 		return m_mVector;
 	}

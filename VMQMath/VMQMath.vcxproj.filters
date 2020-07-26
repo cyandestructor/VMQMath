@@ -21,31 +21,31 @@
     <ClInclude Include="src\Matrix.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\Vector3D.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="src\Quaternion.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\TMatrix3D.h">
+    <ClInclude Include="src\Vector3.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\MMatrix3D.h">
+    <ClInclude Include="src\Point3.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\SMatrix3D.h">
+    <ClInclude Include="src\TMatrix4.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\RMatrix3D.h">
+    <ClInclude Include="src\SMatrix4.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\Axes.h">
+    <ClInclude Include="src\RMatrix4.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\Point3D.h">
+    <ClInclude Include="src\MMatrix4.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\CTMatrix3D.h">
+    <ClInclude Include="src\CTMatrix4.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Axis.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
@@ -53,28 +53,28 @@
     <ClCompile Include="src\Matrix.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\Vector3D.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="src\Quaternion.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\TMatrix3D.cpp">
+    <ClCompile Include="src\Vector3.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\MMatrix3D.cpp">
+    <ClCompile Include="src\Point3.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\SMatrix3D.cpp">
+    <ClCompile Include="src\TMatrix4.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\RMatrix3D.cpp">
+    <ClCompile Include="src\SMatrix4.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\Point3D.cpp">
+    <ClCompile Include="src\RMatrix4.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\CTMatrix3D.cpp">
+    <ClCompile Include="src\MMatrix4.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CTMatrix4.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

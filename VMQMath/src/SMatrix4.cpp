@@ -1,13 +1,13 @@
-#include "SMatrix3D.h"
+#include "SMatrix4.h"
 
 namespace VMQ {
 
-	SMatrix3D::SMatrix3D(const Vector3D& vector)
+	SMatrix4::SMatrix4(const Vector3& vector)
 	{
 		SetScaleVector(vector);
 	}
 
-	void SMatrix3D::SetScaleVector(const Vector3D& vector)
+	void SMatrix4::SetScaleVector(const Vector3& vector)
 	{
 		m_sVector = vector;
 		m_matrix.SetElement(0, 0, vector.X());
@@ -15,7 +15,7 @@ namespace VMQ {
 		m_matrix.SetElement(2, 2, vector.Z());
 	}
 
-	const Vector3D& SMatrix3D::GetScaleVector() const
+	const Vector3& SMatrix4::GetScaleVector() const
 	{
 		return m_sVector;
 	}

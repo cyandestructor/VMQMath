@@ -1,7 +1,7 @@
 #ifndef VMQMATH_QUATERNION_H
 #define VMQMATH_QUATERNION_H
 
-#include "Vector3D.h"
+#include "Vector3.h"
 
 namespace VMQ {
 
@@ -10,15 +10,15 @@ namespace VMQ {
 	public:
 		Quaternion() : m_scalar(0), m_vector() {}
 		Quaternion(double w, double x, double y, double z) :m_scalar(w), m_vector(x, y, z) {}
-		Quaternion(double, const Vector3D&);
+		Quaternion(double, const Vector3&);
 		double W() const;
 		double X() const;
 		double Y() const;
 		double Z() const;
 		double GetScalar() const;
-		const Vector3D& GetVector() const;
+		const Vector3& GetVector() const;
 		void SetScalar(double);
-		void SetVector(const Vector3D&);
+		void SetVector(const Vector3&);
 		void SetW(double);
 		void SetX(double);
 		void SetY(double);
@@ -28,7 +28,7 @@ namespace VMQ {
 
 	private:
 		double m_scalar;
-		Vector3D m_vector;
+		Vector3 m_vector;
 
 	};
 
